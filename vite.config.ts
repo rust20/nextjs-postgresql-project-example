@@ -9,6 +9,9 @@ export default defineConfig({
         routesDirectory: './src/routes',
         generatedRouteTree: './src/routeTree.gen.ts',
       },
+      server: {
+        preset: 'node-server',
+      },
     }),
     viteTsConfigPaths({
       projects: ['./tsconfig.json'],
