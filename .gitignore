@@ -15,6 +15,10 @@
 
 # production
 /build
+/dist
+
+# TanStack Start
+app.config.timestamp_*.js
 
 # misc
 .DS_Store

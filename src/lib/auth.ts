@@ -1,25 +1,19 @@
-import NextAuth from "next-auth";
-import Google from "next-auth/providers/google";
-import PostgresAdapter from "@auth/pg-adapter";
-import pool from "./db";
+import { betterAuth } from 'better-auth'
+import { Pool } from 'pg'
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
-  adapter: PostgresAdapter(pool),
-  providers: [
-    Google({
-      clientId: process.env.AUTH_GOOGLE_ID,
-      clientSecret: process.env.AUTH_GOOGLE_SECRET,
-    }),
-  ],
-  callbacks: {
-    authorized({ auth, request: { nextUrl } }) {
-      const isLoggedIn = !!auth?.user;
-      const isOnAccount = nextUrl.pathname.startsWith("/account");
-      if (isOnAccount) {
-        if (isLoggedIn) return true;
-        return false; // Redirect unauthenticated users to login page
-      }
-      return true;
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+})
+
+export const auth = betterAuth({
+  database: {
+    provider: 'pg',
+    pool,
+  },
+  socialProviders: {
+    google: {
+      clientId: process.env.AUTH_GOOGLE_ID as string,
+      clientSecret: process.env.AUTH_GOOGLE_SECRET as string,
     },
   },
-});
+})
