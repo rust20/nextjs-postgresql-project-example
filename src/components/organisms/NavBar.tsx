@@ -6,7 +6,7 @@ interface NavBarProps {
 
 export default function NavBar({ isLoggedIn }: NavBarProps) {
   return (
-    <nav className="p-4 border-b flex justify-end">
+    <nav style={{ padding: '1rem', borderBottom: '1px solid white', display: 'flex', justifyContent: 'flex-end' }}>
       <AuthButton isLoggedIn={isLoggedIn} />
     </nav>
   )

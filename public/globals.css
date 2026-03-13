@@ -1,13 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+body {
+  padding: 2rem;
+  background-color: black;
+  color: white;
+}
 
-@layer base {
-  body {
-    @apply p-8 bg-black text-white;
-  }
-
-  button {
-    @apply border border-white p-1;
-  }
+button {
+  border: 1px solid white;
+  padding: 0.25rem;
+  cursor: pointer;
+  background: transparent;
+  color: white;
 }
