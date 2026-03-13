@@ -12,20 +12,26 @@ interface DetailsToggleProps {
 export default function DetailsToggle({ user }: DetailsToggleProps) {
   const [isHidden, setIsHidden] = useState(true)
 
-  if (!user) return <Text variant="label">user is not logged in</Text>
+  if (!user) return <Text>user is not logged in</Text>
 
   return (
-    <div className="flex flex-col gap-3">
-      <Button variant="secondary" onClick={() => setIsHidden((prev) => !prev)}>
-        {isHidden ? 'Show Details' : 'Hide Details'}
+    <>
+      <Button onClick={() => setIsHidden((prev) => !prev)}>
+        {isHidden ? 'Show Details' : 'Hide Details'}{' '}
       </Button>
+
+      <br />
+
       {!isHidden && (
-        <div className="flex flex-col gap-2">
-          {user.name && <Text variant="body">username: {user.name}</Text>}
-          {user.email && <Text variant="body">email: {user.email}</Text>}
+        <>
+          <Text>username: {user.name}</Text>
+          <Text>email: {user.email}</Text>
+
+          <br />
+
           <NavLink to="/account">View Account Page</NavLink>
-        </div>
+        </>
       )}
-    </div>
+    </>
   )
 }

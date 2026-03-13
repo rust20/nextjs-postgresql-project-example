@@ -12,6 +12,6 @@ export default function AuthButton({ isLoggedIn }: AuthButtonProps) {
   const handleLogout = () => authClient.signOut({ fetchOptions: { onSuccess: () => window.location.reload() } })
 
   return isLoggedIn
-    ? <Button variant="secondary" onClick={handleLogout}>Logout</Button>
-    : <Button variant="primary" onClick={handleLogin}>Login</Button>
+    ? <Button onClick={handleLogout}>Logout</Button>
+    : <Button onClick={handleLogin}>Login</Button>
 }

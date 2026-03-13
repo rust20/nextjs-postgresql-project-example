@@ -9,10 +9,14 @@ interface UserCardProps {
 
 export default function UserCard({ name, email, image }: UserCardProps) {
   return (
-    <div className="flex flex-col items-center gap-3">
+    <>
       {image && <AvatarImage src={image} alt={name ?? 'User avatar'} />}
-      {name && <Text variant="body">username: {name}</Text>}
-      {email && <Text variant="body">email: {email}</Text>}
-    </div>
+
+      <br />
+      <br />
+
+      {name && <Text>username: {name}</Text>}
+      {email && <Text>email: {email}</Text>}
+    </>
   )
 }

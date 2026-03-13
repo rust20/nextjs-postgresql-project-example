@@ -22,8 +22,10 @@ export const Route = createFileRoute('/account/')({
 function AccountPage() {
   const session = Route.useLoaderData()
   return (
-    <AuthLayout>
+    <>
+      <br />
+      <br />
       <AccountProfile user={session?.user ?? null} />
-    </AuthLayout>
+    </>
   )
 }

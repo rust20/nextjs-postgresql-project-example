@@ -12,11 +12,12 @@ export default function AccountProfile({ user }: AccountProfileProps) {
   const router = useRouter()
 
   return (
-    <div className="flex flex-col items-center gap-6 p-8">
+    <>
       <UserCard name={user?.name} email={user?.email} image={user?.image} />
-      <Button variant="secondary" onClick={() => router.history.back()}>
-        Go Back
-      </Button>
-    </div>
+
+      <br />
+
+      <Button onClick={() => router.history.back()}>Go Back</Button>
+    </>
   )
 }

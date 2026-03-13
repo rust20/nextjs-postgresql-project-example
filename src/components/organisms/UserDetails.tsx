@@ -6,8 +6,10 @@ interface UserDetailsProps {
 
 export default function UserDetails({ user }: UserDetailsProps) {
   return (
-    <div className="p-8">
+    <>
+      <br />
+      <br />
       <DetailsToggle user={user} />
-    </div>
+    </>
   )
 }
