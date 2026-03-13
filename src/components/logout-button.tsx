@@ -1,15 +1,10 @@
 "use client";
 
-import { createSupabaseBrowserClient } from "@/lib/supabase/browser-client";
-import { useRouter } from "next/navigation";
+import { signOut } from "next-auth/react";
 
 export default function LogoutButton() {
-  const supabase = createSupabaseBrowserClient();
-  const router = useRouter();
-
   const handleLogout = async () => {
-    await supabase.auth.signOut();
-    router.refresh();
+    await signOut();
   };
 
   return <button onClick={handleLogout}>Logout</button>;

@@ -1,10 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { type User } from "@supabase/supabase-js";
 import Link from "next/link";
+import { type Session } from "next-auth";
 
-export default function DetailsButtonClient({ user }: { user: User | null }) {
+export default function DetailsButtonClient({
+  user,
+}: {
+  user: Session["user"] | null;
+}) {
   const [isHidden, setIsHidden] = useState(true);
 
   return (
@@ -19,7 +23,7 @@ export default function DetailsButtonClient({ user }: { user: User | null }) {
 
           {isHidden ? null : (
             <>
-              <p>{`username: ${user?.user_metadata?.full_name}`}</p>
+              <p>{`username: ${user?.name}`}</p>
               <p>{`email: ${user?.email}`}</p>
 
               <br />

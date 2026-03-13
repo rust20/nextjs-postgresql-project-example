@@ -1,22 +1,27 @@
 "use client";
 
-import useSession from "@/lib/supabase/use-session";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 export default function UserInformation() {
-  const user = useSession()?.user;
+  const { data: session, status } = useSession();
+  const user = session?.user;
 
   const router = useRouter();
+
+  if (status === "loading") {
+    return <p>Loading ...</p>;
+  }
 
   return (
     <>
       {user ? (
         <>
-          <p>{`username: ${user?.user_metadata?.full_name}`}</p>
+          <p>{`username: ${user?.name}`}</p>
           <p>{`email: ${user?.email}`}</p>
         </>
       ) : (
-        <p>Loading ...</p>
+        <p>User is not logged in</p>
       )}
 
       <br />

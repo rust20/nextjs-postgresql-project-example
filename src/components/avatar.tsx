@@ -1,15 +1,13 @@
-import { createSupabaseServerComponentClient } from "@/lib/supabase/server-client";
+import { auth } from "@/lib/auth";
 import Image from "next/image";
 
 export default async function Avatar() {
-  const {
-    data: { user },
-    error,
-  } = await createSupabaseServerComponentClient().auth.getUser();
+  const session = await auth();
+  const user = session?.user;
 
   return (
     <Image
-      src={user?.user_metadata.avatar_url}
+      src={user?.image || "/next.svg"}
       alt="profile image"
       width={96}
       height={96}
